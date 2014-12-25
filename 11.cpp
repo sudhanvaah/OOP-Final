@@ -43,7 +43,6 @@ class q
     cout<<" "<<q1[i];
  }
  };
-
  int main()
  {
  q<int>w1;
@@ -52,81 +51,37 @@ class q
  cout<<"1 for intger queue\n2 for float queue ";
  cin>>n;
  if(n==1)
-
  {
-
  while (ch1)
-
  {
-
  cout<<"\n\n1 to insert\n2 to delete\n3 to display\n0 to exit\n";
-
  cin>>ch1;
-
  switch(ch1)
-
  {
-
  case 1: w1.insert();
-
-
-
  break;
-
  case 2: w1.delet();
-
-
-
  break;
-
  case 3: w1.dp();
-
  break;
-
  }
-
  }
-
  }
-
  else
-
  {
-
   while (ch2)
-
  {
-
  cout<<"\n\n1 to insert\n2 to delete\n3 to display\n0 to exit\n";
-
  cin>>ch2;
-
  switch(ch2)
-
  {
-
  case 1:w2.insert();
-
-
-
  break;
-
  case 2:w2.delet();
-
-
-
  break;
-
  case 3:w2.dp();
-
  break;
-
-
-
  }
-
  }
-
  }
-
 }
