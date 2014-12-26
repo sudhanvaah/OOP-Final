@@ -1,0 +1,923 @@
+1a
+#include<iostream>
+using namespace std;
+class x
+{
+ int a,b,c;
+ public:
+ inline int max()
+ {
+ cout<<"Enter three numbers ";
+ cin>>a>>b>>c;
+ if(a>b)
+ {
+ if(a>c)
+ return a;
+ else
+ return c;
+ }
+ else
+ {
+ if(b>c)
+ return b;
+ else
+ return c;
+ }
+ }
+};
+int main()
+{
+ x obj;
+ int m;
+ m=obj.max();
+ cout<<"\nThe largest is "<<m<<endl;
+ return 0;
+}
+
+
+1b
+#include <iostream>
+using namespace std;
+class si
+{
+    public:
+    float amount;
+    float p;
+    float r;
+    float t;
+    void interest(float p,float t=1,float r=12)
+    {
+    amount = (p*t*r)/100;
+    cout<<"\nSimple interest for one year at 12% is: Rs."<<amount;
+    }
+};
+int main()
+{
+ si S;
+ cout<<"Enter princpal ";
+ cin>>S.p;
+ S.interest(S.p);
+ return 0;
+}
+
+
+1c
+#include<iostream>
+using namespace std;
+struct student
+{
+ char name[10];
+ float roll;
+ float height;
+ float weight;
+ void display();
+ void getdata();
+}s[5];
+void student::getdata()
+{
+ cout<<"\nEnter name ";
+ cin>>name;
+ cout<<"\nEnter height ",
+ cin>>height;
+ cout<<"\nEnter weight ";
+ cin>>weight;
+ cout<<"\nEnter roll ";
+ cin>>roll;
+}
+void student::display()
+{
+ cout<<"\nMame: "<<name;
+ cout<<"\nHeight: "<<height;
+ cout<<"\nWeight: "<<weight;
+ cout<<"\nRoll: "<<roll;
+}
+void arrange(student s[5])
+{
+ int i,j;
+ student temp;
+ for(i=0;i<5;i++)
+    for(j=0;j<4;j++)
+        if(s[j+1].height<s[j].height)
+        {
+         temp=s[j+1];
+         s[j+1]=s[j];
+         s[j]=temp;
+        }
+}
+int main()
+{
+int i;
+ cout<<"Enter details of 5 students\n";
+for(i=0;i<5;i++)
+{
+ cout<<"\nEnter details of student "<<i+1<<"\n";
+ s[i].getdata();
+}
+ arrange(s);
+ cout<<"\n\nAfter sorting to based on height";
+ for(i=0;i<5;i++)
+ s[i].display();
+ return 0;
+}
+
+
+
+2a
+#include<iostream>
+using namespace std;
+class calc
+{
+    public:
+    int a,b;
+    void add()
+    {
+     cout<<(a+b)<<"\n";
+    }
+    void sub()
+    {
+     cout<<(a-b)<<"\n";
+    }
+    void mul()
+    {
+     cout<<(a*b)<<"\n";
+    }
+    void div()
+    {
+     cout<<(float)a/b<<"\n";
+    }
+
+};
+int main()
+{
+calc obj;
+int choice;
+cout<<"Enter two numbers ";
+cin>>obj.a>>obj.b;
+while(1)
+{
+cout<<"\nEnter 1 to add, 2 to subtract, 3 to multiply, 4 to divide, 0 to exit ";
+cin>>choice;
+switch(choice)
+{
+case 1:obj.add();break;
+case 2:obj.sub();break;
+case 3:obj.mul();break;
+case 4:obj.div();break;
+case 0: return 0;
+default:cout<<"\nInvalid input";
+}
+}
+}
+
+
+2b
+#include<iostream>
+using namespace std;
+class s
+{
+    int *a,n;
+    public:
+    void getdata()
+    {
+        cout<<"\nEnter number of elements ";
+        cin>>n;
+        cout<<"\nEnter elements ";
+        a=new int[n];
+        for(int i=0;i<n;i++)
+            cin>>a[i];
+    }
+   friend float mean(s S)
+   {
+       float avg=0;
+       for(int i=0;i<S.n;i++)
+        avg+=S.a[i];
+       avg/=S.n;
+       return avg;
+   }
+   void disp()
+   {
+       cout<<"\nElements are:\n";
+       for(int i=0;i<n;i++)
+            cout<<a[i]<<" ";
+   }
+};
+main()
+{
+    s S;
+    float f;
+    S.getdata();
+    f=mean(S);
+    S.disp();
+    cout<<"\nMean is "<<f;
+    return 0;
+}
+
+
+3
+#include<iostream>
+using namespace std;
+class rectangle
+{
+    public:
+    int l,b;
+    void getdata()
+    {
+        cin>>l>>b;
+    }
+    rectangle operator +(rectangle R)
+    {
+        rectangle r;
+        r.l=l+R.l;
+        r.b=b+R.b;
+        return r;
+    }
+    rectangle operator - ()
+    {
+        cout<<"\nArea: "<<l*b<<" square units";
+        cout<<"\nPerimeter: "<<2*(l+b)<<" units";
+    }
+    friend ostream & operator <<(ostream & dout,rectangle r)
+    {
+        dout<<r.l<<" "<<r.b;
+    }
+    int operator ==(rectangle r)
+    {
+        if(r.l==l && r.b==b)
+            return 1;
+        return 0;
+    }
+};
+main()
+{
+    rectangle a,b,c;
+    cout<<"\nEnter length and breadth of first rectangle ";
+    a.getdata();
+    -a;
+    cout<<"\n\nEnter length and breadth of second rectangle ";
+    b.getdata();
+    -b;
+    if(a==b)
+        cout<<"\n\nRectangles are equal ";
+    else
+        cout<<"\n\nRectangles are not equal ";
+    c=a+b;
+    cout<<"\n\nSum of the two rectangles: ";
+    cout<<c;
+    -c;
+    return 0;
+}
+
+
+4
+#include<iostream>
+#include<cstdlib>
+using namespace std;
+class matrix
+{
+public:
+long m[5][5];
+int row,col;
+matrix(int col1,int row1)
+{
+    col=col1;
+    row=row1;
+}
+matrix()
+{
+
+}
+void getdata()
+{
+for(int i=0;i<row;i++)
+     for(int j=0;j<col;j++)
+          cin>>m[i][j];
+}
+int operator ==(matrix cm)
+{
+if(row==cm.row&&col==cm.col)
+    return 1;
+return 0;
+}
+matrix operator +(matrix am)
+{
+    matrix temp;
+    for(int i=0;i<row;i++)
+        for(int j=0;j<col;j++)
+            temp.m[i][j]=m[i][j]+am.m[i][j];
+    temp.row=row;
+    temp.col=col;
+    return temp;
+}
+matrix operator -(matrix am)
+{
+    matrix temp;
+    for(int i=0;i<row;i++)
+        for(int j=0;j<col;j++)
+            temp.m[i][j]=m[i][j]-am.m[i][j];
+    temp.row=row;
+    temp.col=col;
+    return temp;
+}
+friend ostream& operator<<(ostream& dout , matrix& d)
+{
+for(int i=0;i<d.row;i++)
+{
+    for(int j=0;j<d.col;j++)
+        dout<<d.m[i][j]<<"\t";
+    dout<<"\n";
+}
+}
+};
+int main()
+{
+matrix m3,m4;
+int col1,row1,col2,row2;
+cout<<"\nEnter order of matrix A "<<endl;
+cin>>row1>>col1;
+cout<<"\nEnter order of matrix B"<<endl;
+cin>>row2>>col2;
+matrix m1(col1,row1),m2(col2,row2);
+if(!(m1==m2))
+{
+    cout<<"\nMatrices not compatible ";
+    return -1;
+}
+    cout<<"\nEnter elements of A ";
+    m1.getdata();
+    cout<<"\nEnter elements of B ";
+    m2.getdata();
+    m3=m1+m2;
+    m4=m1-m2;
+    cout<<"\nA + B: \n\n";
+    cout<<m3;
+    cout<<"\nA - B:\n\n";
+    cout<<m4;
+return 0;
+}
+
+
+5
+#include<iostream>
+using namespace std;
+class comp
+{
+double real,imag;
+public:
+comp()
+{
+    real=0;
+    imag=0;
+}
+comp(double r,double i)
+{
+    real=r;
+    imag=i;
+}
+void display()
+{
+    cout<<real<<"+i"<<imag<<"\n";
+}
+friend comp add(comp a,comp b)
+{
+    comp c;
+    c.real=a.real+b.real;
+    c.imag=a.imag+b.imag;
+    return c;
+}
+friend comp mul(comp a,comp b)
+{
+    comp c;
+    c.real=(a.real*b.real)-(a.imag*b.imag);
+    c.imag=(a.imag*b.real)+(a.real*b.imag);
+    return c;
+}
+};
+int main()
+{
+double real,imag;
+cout<<"Creating two complex numbers\n";
+cout<<"\nEnter complex number a ";
+cout<<"\nEnter real part ";
+cin>>real;
+cout<<"Enter imaginary part ";
+cin>>imag;
+comp a(real,imag);
+cout<<"\nEnter complex number b ";
+cout<<"\nEnter real part ";
+cin>>real;
+cout<<"Enter imaginary part ";
+cin>>imag;
+comp b(real,imag);
+comp c;
+c=add(a,b);
+cout<<"\na + b = ";
+c.display();
+c=mul(a,b);
+cout<<"\na x b = ";
+c.display();
+}
+
+6
+#include<iostream>
+#include<cstring>
+#include<cstdlib>
+using namespace std;
+class strng
+{
+    char str[20];
+    public:
+        strng()
+        {
+            str[0]='\0';
+        }
+        strng(char temp[])
+        {
+            strcpy(str,temp);
+        }
+        strng(strng &temp)
+        {
+            strcpy(str,temp.str);
+        }
+        void display();
+        friend strng operator+(strng s1,strng s2);
+        friend ostream &operator<<(ostream&,strng&);
+};
+void strng::display()
+    {
+        cout<<"\nstring is"<<str;
+    }
+strng operator+(strng s1,strng s2)
+    {
+        strcat(s1.str,s2.str);
+        return s1;
+    }
+ostream& operator<<(ostream& os,strng& s)
+    {
+        os<<s.str<<endl;
+        return os;
+    }
+int main()
+    {
+        strng s1("ise");
+        strng s2("MSRIT");
+        strng s3;
+        cout<<"\nBefore concatenation: ";
+        cout<<"\n s1="<<s1;
+        cout <<"\n s2="<<s2;
+        s3=s1+s2;
+        cout<<"\nAfter concatenation: "<<"\n";
+        cout<<"\ns1 + s2 = "<<s3;
+        return 0;
+    }
+
+
+7
+#include<iostream>
+#include <cmath>
+#define PI 3.14
+using namespace std;
+class circle
+{
+public:
+float r;
+circle(float radius)
+{
+    r=radius;
+}
+float area()
+{
+    return (PI*r*r);
+}
+};
+class sector:circle
+{
+float angle;
+public:
+sector(float ang, float rad) : circle(rad)
+{
+    angle=ang;
+}
+float area_sec()
+{
+    return (r*r*(angle/2.0));
+}
+};
+class segment:public circle
+{
+float h;
+public:
+segment(float len, float rad) : circle(rad)
+{
+    h=len;
+}
+float area_seg()
+{
+return (r*r*((r-h)/r))-((r-h)*(sqrt((2*r*h)-(h*h))));
+
+}
+};
+int main()
+{
+float r,a,l;
+cout<<"Enter radius "<< endl;
+cin>>r;
+cout<<"Enter angle of sector in radians "<< endl;
+cin>>a;
+cout<<"Enter length of segment "<<endl;
+cin>>l;
+circle c(r);
+cout<<"Area of circle is "<<c.area()<<endl;
+sector s(a,r);
+cout<<"Area of sector is "<<s.area_sec()<<endl;
+segment se(l,r);
+cout << "Area of segment is " << se.area_seg() << endl;
+return 0;
+}
+
+
+8
+#include <iostream>
+using namespace std;
+class matrix
+{
+    int **a,ord;
+    public:
+    matrix(int n)
+    {
+       ord=n;
+       a=new int*[n];
+       for(int i=0;i<n;i++)
+        a[i]=new int[n];
+    }
+    matrix(matrix&  M)
+    {
+        ord=M.ord;
+        a=new int * [ord];
+        for(int i=0;i<ord;i++)
+         a[i]=new int[ord];
+        for(int i=0;i<ord;i++)
+            for(int j=0;j<ord;j++)
+                a[i][j]=M.a[i][j];
+    }
+    void getdata()
+    {
+
+        for(int i=0;i<ord;i++)
+            for(int j=0;j<ord;j++)
+                cin>>a[i][j];
+    }
+    void disp()
+    {
+        for(int i=0;i<ord;i++)
+        {
+            cout<<"\n";
+            for(int j=0;j<ord;j++)
+                cout<<"\t"<<a[i][j];
+        }
+        cout<<"\n";
+    }
+    friend matrix operator *(matrix A, matrix B)
+    {
+        int o=A.ord;
+        matrix  mult(o);
+        for(int i=0;i<o;i++)
+            for(int j=0;j<o;j++)
+            {
+                mult.a[i][j]=0;
+                for(int k=0;k<o;k++)
+                   mult.a[i][j]+=A.a[i][k]*B.a[k][j];
+            }
+        return mult;
+    }
+    friend matrix operator +(matrix A, matrix B)
+    {
+        int o=A.ord;
+        matrix  mult(o);
+        for(int i=0;i<o;i++)
+            for(int j=0;j<o;j++)
+            {
+                   mult.a[i][j]=A.a[i][j]+B.a[i][j];
+            }
+        return mult;
+    }
+    matrix& operator=(const matrix& M)
+    {
+        ord=M.ord;
+        a=new int*[ord];
+        for(int i=0;i<ord;i++)
+            a[i]=new int[ord];
+        for(int i=0;i<ord;i++)
+            for(int j=0;j<ord;j++)
+                a[i][j]=M.a[i][j];
+            //return *this;
+    }
+    ~matrix()
+    {
+        delete a;
+        cout<<"\nObject deleted ";
+    }
+
+};
+main()
+{
+    int n;
+    cout<<"\nEnter size of square matrices ";
+    cin>>n;
+    matrix A(n),B(n);
+    cout<<"\nEnter elements of matrix A ";
+    A.getdata();
+    cout<<"\nEnter elements of matrix B ";
+    B.getdata();
+    cout<<"\n\tMatrix A:\n";
+    A.disp();
+    cout<<"\n\tMatrix B:\n";
+    B.disp();
+    matrix C(A);
+    cout<<"\n\tCopied matrix (C=A):\n";
+    C.disp();
+    C=A+B;
+    cout<<"\n\n\tA + B:\n";
+    C.disp();
+    C=A*B;
+    cout<<"\n\n\tA x B:\n";
+    C.disp();
+    return 0;
+}
+
+
+9
+#include<iostream>
+using namespace std;
+class octal
+{
+int oct,dec,ten;
+public:
+octal()
+{
+oct=0;
+ten=1;
+}
+void operator=(int x)
+{
+int r;
+dec=x;
+while(x!=0)
+{
+r=x%8;
+x=x/8;
+oct=oct+ten*r;
+ten=ten*10;
+}
+}
+int operator+(int k)
+{
+return(dec+k);
+}
+friend ostream & operator<<(ostream&,octal& c);
+};
+ostream & operator<<(ostream& sout,octal&c)
+{
+sout<<c.oct;
+}
+int main()
+{
+octal h;
+int n,k;
+cout<<"Enter a integer to change to octal: ";
+cin>>n;
+cout<<endl;
+h=n;
+cout<<"The octal value of "<<n<<" is: "<<h<<endl;
+cout<<"\nEnter integer to be added to previous octal: ";
+cin>>k;
+cout<<endl;
+int y=h+k;
+cout<<"Integer sum of octal and integer is: "<<y<<"\n";
+return 0;
+}
+
+
+10a
+#include<iostream>
+using namespace std;
+int main()
+{
+int a,b;
+cout<<"Enter a and b for a/b ";
+cin>>a>>b;
+try
+{
+if(b==0)
+ throw 0;
+cout<<"\n"<<a<<"/"<<b<<" = "<<(float)a/b;
+}
+catch(int)
+{
+cout<<"Error! Divide by zero not possible.";
+}
+return 0;
+}
+
+
+10b
+#include<iostream>
+#include<iomanip>
+using namespace std;
+template<class t>
+void bubble(t a[])
+{
+t temp;
+for(int i=0;i<4;i++)
+ for(int j=4;i<j;j--)
+    if(a[j]<a[j-1])
+     {
+         temp=a[j];
+         a[j]=a[j-1];
+         a[j-1]=temp;
+     }
+}
+int main()
+{
+int x[5];
+float y[5]={1.1,5.5,3.3,4.4,2.2};
+cout<<"\nEnter 5 integers ";
+for(int i=0;i<5;i++)
+    cin>>x[i];
+cout<<"\nEnter 5 floating point numbers ";
+for(int i=0;i<5;i++)
+    cin>>y[i];
+bubble(x);
+bubble(y);
+cout<<"\nsorted integers: ";
+for(int i=0;i<5;i++)
+cout<<x[i]<<" ";
+cout<<"\n";
+cout<<"\nSorted floating point numbers: ";
+for(int j=0;j<5;j++)
+cout<<y[j]<<" ";
+cout<<"\n";
+return 0;
+}
+
+
+11
+#include<iostream>
+using namespace std;
+int f=0;
+int r=-1;
+template <class T>
+class q
+{
+
+ T q1[4];
+ public:
+ void insert()
+ {
+ T item;
+ cout<<"\nEnter element ";
+ cin>>item;
+ if(r>=3)
+    cout<<"\nOverflow";
+ else
+    q1[++r]=item;
+ }
+ void delet()
+ {
+ if(r==-1)
+    cout<<"\nUnderflow";
+ else
+    cout<<"\n"<<q1[f++]<<" is deleted";
+ if(f>r)
+ {
+     r=-1;
+     f=0;
+ }
+ }
+ void dp()
+ {
+ int i;
+ if(r==-1)
+ {
+     cout<<"\nEmpty queue";
+     return;
+ }
+ cout<<"\nQueue is ";
+ for(i=f;i<=r;i++)
+    cout<<" "<<q1[i];
+ }
+ };
+ int main()
+ {
+ q<int>w1;
+ q<double>w2;
+ int ch1=1,ch2=1,n;
+ cout<<"1 for intger queue\n2 for float queue ";
+ cin>>n;
+ if(n==1)
+ {
+ while (ch1)
+ {
+ cout<<"\n\n1 to insert\n2 to delete\n3 to display\n0 to exit\n";
+ cin>>ch1;
+ switch(ch1)
+ {
+ case 1: w1.insert();
+ break;
+ case 2: w1.delet();
+ break;
+ case 3: w1.dp();
+ break;
+ }
+ }
+ }
+ else
+ {
+  while (ch2)
+ {
+ cout<<"\n\n1 to insert\n2 to delete\n3 to display\n0 to exit\n";
+ cin>>ch2;
+ switch(ch2)
+ {
+ case 1:w2.insert();
+ break;
+ case 2:w2.delet();
+ break;
+ case 3:w2.dp();
+ break;
+ }
+ }
+ }
+ return 0;
+}
+
+
+12
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+class account
+{
+char name[20];
+int acn;
+float acb1,acb2,d,w;
+public:
+void getdata()
+{
+cout<<"\nEnter the name of the account holder ";
+cin>>name;
+cout<<"\nEnter the acount no. ";
+cin>>acn;
+cout<<"\nEnter initial balance " ;
+cin>>acb1;
+acb2=acb1;
+}
+void deposit()
+{
+cout<<"\nEnter the amount to be deposited ";
+cin>>d;
+acb2=acb2+d;
+cout<<"The balance amount in this bank account is: "<<acb2;
+}
+void withdraw()
+{
+cout<<"\nThe total amount in this bank account is: "<<acb2;
+cout<<"\nEnter the amount to be withdrawn ";
+cin>>w;
+try
+{
+if(w>acb2)
+throw w;
+acb2=acb2-w;
+cout<<"The balance amount in this bank account is: "<<acb2;
+}
+catch(float)
+{
+cout<<"Withdraw amount is more than the balance amount\n";
+}
+}
+void putdata()
+{
+cout<<"\nThe name of the account holder is: "<<name;
+cout<<"\nThe acount no. is: "<<acn;
+cout<<"\nThe total amount in this bank account is: "<<acb2;
+}
+};
+int main()
+{
+account a;
+int x;
+a.getdata();
+while(1)
+{
+cout<<"\n\nTo deposit press 1\nTo withdraw press 2\nTo display press 3\nTo exit press 4\n";
+cin>>x;
+if(x==1)
+a.deposit();
+else if(x==2)
+a.withdraw();
+else if(x==3)
+a.putdata();
+else if(x==4)
+ return 0;
+}
+}
