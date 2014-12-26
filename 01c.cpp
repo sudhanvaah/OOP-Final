@@ -1,134 +1,57 @@
 #include<iostream>
-
 using namespace std;
-
 struct student
-
 {
-
  char name[10];
-
  float roll;
-
  float height;
-
  float weight;
-
  void display();
-
  void getdata();
-
 }s[5];
-
 void student::getdata()
-
 {
-
- cout<<"enter name\n";
-
-
-
-
-
+ cout<<"\nEnter name ";
  cin>>name;
-
-
- cout<<"enter height\n",
-
+ cout<<"\nEnter height ",
  cin>>height;
-
- cout<<"enter weight\n";
-
+ cout<<"\nEnter weight ";
  cin>>weight;
-
- cout<<"enter roll\n";
-
+ cout<<"\nEnter roll ";
  cin>>roll;
-
 }
-
 void student::display()
-
 {
-
- cout<<"\nname :"<<name;
-
- cout<<"\nheight :"<<height;
-
- cout<<"\nweight :"<<weight;
-
- cout<<"\nroll :"<<roll;
-
+ cout<<"\nMame: "<<name;
+ cout<<"\nHeight: "<<height;
+ cout<<"\nWeight: "<<weight;
+ cout<<"\nRoll: "<<roll;
 }
-
 void arrange(student s[5])
-
 {
-
  int i,j;
-
  student temp;
-
  for(i=0;i<5;i++)
-
-{
-
- for(j=0;j<4;j++)
-
-{
-
- if(s[j+1].height<s[j].height)
-
-{
-
- temp=s[j+1];
-
- s[j+1]=s[j];
-
- s[j]=temp;
-
- }
-
- }
-
- }
-
+    for(j=0;j<4;j++)
+        if(s[j+1].height<s[j].height)
+        {
+         temp=s[j+1];
+         s[j+1]=s[j];
+         s[j]=temp;
+        }
 }
-
 int main()
-
 {
-
 int i;
-
- cout<<"enter details of 5 students";
-
+ cout<<"Enter details of 5 students\n";
 for(i=0;i<5;i++)
-
 {
-
- cout<<"enter details of student "<<i+1<<"\n";
-
+ cout<<"\nEnter details of student "<<i+1<<"\n";
  s[i].getdata();
-
 }
-
-for(i=0;i<5;i++)
-
-{
-
- cout<<"details of student\n";
-
-}
-
  arrange(s);
-
- cout<<"after sorting to based on height";
-
+ cout<<"\n\nAfter sorting to based on height";
  for(i=0;i<5;i++)
-
  s[i].display();
-
  return 0;
-
 }
