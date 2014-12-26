@@ -57,4 +57,5 @@ sector s(a,r);
 cout<<"Area of sector is "<<s.area_sec()<<endl;
 segment se(l,r);
 cout << "Area of segment is " << se.area_seg() << endl;
+return 0;
 }
